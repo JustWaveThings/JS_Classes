@@ -1,4 +1,5 @@
 // https://javascript.info/class
+// and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 
 // basic syntax
 /* class MyClass {
@@ -113,7 +114,7 @@ let button = new Button('hello there');
 
 setTimeout(button.click, 5000);  // doesnt work --- undefined  */
 
-class Button {
+/* class Button {
 	constructor(value) {
 		this.value = value;
 	}
@@ -124,4 +125,165 @@ class Button {
 
 let button = new Button('hello there');
 
-setTimeout(button.click, 5000);
+setTimeout(button.click, 5000); */
+
+/* class Rectangle {
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+}
+console.log(Rectangle.name);
+
+Square = class Square2 {
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+};
+console.log(Square.name);
+ */
+
+/* class Rectangle {
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+	get area() {
+		return this.calcArea();
+	}
+
+	calcArea() {
+		return this.height * this.width;
+	}
+}
+
+const square = new Rectangle(10, 10);
+
+console.log(square.area);
+console.log(square.calcArea()); */
+
+/* class Polygon {
+	constructor(...sides) {
+		this.sides = sides;
+	}
+	*getSides() {
+		for (const side of this.sides) {
+			yield side;
+		}
+	}
+}
+
+const pentagon = new Polygon(1, 2, 3, 4, 5);
+
+console.log([...pentagon.getSides()]); */
+
+/* class Point {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	static displayName = 'Point';
+	static distance(a, b) {
+		const dx = a.x - b.x;
+		const dy = a.y - b.y;
+
+		return Math.hypot(dx, dy);
+	}
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+
+console.log(Point.displayName);
+console.log(Point.distance(p1, p2)); */
+
+/* // public field class definitions
+
+class Rectangle {
+	height = 0;
+	width;
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+}
+
+// private field class definitions
+
+class Rectangle2 {
+	#height = 0;
+	#width;
+	constructor(height, width) {
+		this.#height = height;
+		this.#width = width;
+	}
+} */
+
+// sub classing with extends
+
+/* class Animal {
+	constructor(name) {
+		this.name = name;
+	}
+	speak() {
+		console.log(`${this.name} makes a noise.`);
+	}
+}
+
+class Dog extends Animal {
+	constructor(name) {
+		super(name);
+	}
+	speak() {
+		console.log(`${this.name} barks`);
+	}
+}
+
+const d = new Dog('Tango');
+d.speak();
+ */
+
+/* class MyArray extends Array {
+	static get [Symbol.species]() {
+		return Array;
+	}
+}
+
+const a = new MyArray(1, 2, 3);
+const mapped = a.map((x) => x * x);
+
+console.log(mapped instanceof MyArray);
+console.log(mapped instanceof Array); */
+
+/* class Cat {
+	constructor(name) {
+		this.name = name;
+	}
+	speak() {
+		console.log(`${this.name} makes a noise`);
+	}
+}
+
+class Lion extends Cat {
+	speak() {
+		super.speak();
+		console.log(`${this.name} roars.`);
+	}
+}
+
+const l = new Lion('Kashimaru');
+l.speak(); */
+
+const calculatorMixin = (Base) =>
+	class extends Base {
+		calc() {}
+	};
+
+const randomizerMixin = (Base) =>
+	class extends Base {
+		randomize() {}
+	};
+
+class Foo {}
+class Bar extends calculatorMixin(randomizerMixin(Foo)) {}
